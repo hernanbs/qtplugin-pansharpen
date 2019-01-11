@@ -81,10 +81,10 @@ class Ui_Dialog(object):
         print(self.panImageFile())
         print(self.multImageFile())
         self.GdalClass().testando()
-        nameOutput = os.path.dirname(self.panImageFile()) + '-' + os.path.dirname(self.multImageFile()) + '.tiff'
+        nameOutput = os.path.basename(self.panImageFile()) + '-' + os.path.basename(self.multImageFile()) + '.tiff'
         output = os.path.join(os.path.dirname(self.panImageFile()),nameOutput)
         print(output)
-        self.GdalClass().pansharpening(self.panImageFile(), self.multImageFile(), 'lugar_de_saida')
+        self.GdalClass().pansharpening(self.panImageFile(), self.multImageFile(), output)
 
 
 from qgis.gui import QgsFileWidget
