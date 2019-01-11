@@ -9,10 +9,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os
 import sys
-#sys.path.append("C:\\Users\\Avimar\\Desktop\\plugin_hernan\\repositorio\\qtplugin-pansharpen\\app\\gdalClass.py")
-#sys.path.append("C:\\Users\\Avimar\\Desktop\\plugin_hernan\\repositorio\\qtplugin-pansharpen\\app\\scripts\\gdalClass.py")
-#import gdalClass
-from gdalClass from GdalClass
+sys.path.append("C:\\Users\\Avimar\\Desktop\\plugin_hernan\\repositorio\\qtplugin-pansharpen\\app\\scripts\\")
+import gdalClass
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -75,19 +73,18 @@ class Ui_Dialog(object):
     def multImageFile(self):
         return self.multImage.filePath()
 
-    # def GdalClass(self):
-    #     return gdalClass.GdalClass()
+    def GdalClass(self):
+        return gdalClass.GdalClass()
 
     def onClick(self):
         print('botão funcionou')
         print(self.panImageFile())
         print(self.multImageFile())
-        GdalClass().testando()
-        #self.GdalClass().testando()
-        # nameOutput = os.path.dirname(self.panImageFile()) + '-' + os.path.dirname(self.multImageFile()) + '.tiff'
-        # output = os.path.join(os.path.dirname(self.panImageFile()),nameOutput)
-        # print(output)
-        #self.GdalClass().pansharpening(self.panImageFile(), self.multImageFile(), 'lugar_de_saida')
+        self.GdalClass().testando()
+        nameOutput = os.path.dirname(self.panImageFile()) + '-' + os.path.dirname(self.multImageFile()) + '.tiff'
+        output = os.path.join(os.path.dirname(self.panImageFile()),nameOutput)
+        print(output)
+        self.GdalClass().pansharpening(self.panImageFile(), self.multImageFile(), 'lugar_de_saida')
 
 
 from qgis.gui import QgsFileWidget
