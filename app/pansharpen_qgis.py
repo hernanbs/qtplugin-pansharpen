@@ -7,6 +7,10 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import os
+import sys
+sys.path.append("C:\\Users\\Avimar\\Desktop\\plugin_hernan\\repositorio\\qtplugin-pansharpen\\app\\scripts\\")
+import gdalClass
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -63,6 +67,26 @@ class Ui_Dialog(object):
         self.multImageLabel.setText(_translate("Dialog", "Multispectral Image (.tiff)"))
         self.btnPansharpen.setText(_translate("Dialog", "Pansharpen"))
 
+    def panImageFile(self):
+        return self.panImage.filePath()
+
+    def multImageFile(self):
+        return self.multImage.filePath()
+
+    def GdalClass(self):
+        return gdalClass.GdalClass()
+
+    def onClick(self):
+        print('botão funcionou')
+        print(self.panImageFile())
+        print(self.multImageFile())
+        self.GdalClass().testando()
+        nameOutput = os.path.basename(self.panImageFile()) + '-' + os.path.basename(self.multImageFile()) + '.tiff'
+        output = os.path.join(os.path.dirname(self.panImageFile()),nameOutput)
+        print(output)
+        self.GdalClass().pansharpening(self.panImageFile(), self.multImageFile(), output)
+
+
 from qgis.gui import QgsFileWidget
 
 if __name__ == "__main__":
@@ -74,5 +98,7 @@ if __name__ == "__main__":
     ui = Ui_Dialog()
     ui.setupUi(Dialog)
     Dialog.show()
-    sys.exit(app.exec_())
+    app.exec()
+    ui.btnPansharpen.clicked.connect(ui.onClick)
+    #sys.exit(app.exec_())
 
